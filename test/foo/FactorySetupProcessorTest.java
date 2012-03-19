@@ -3,8 +3,11 @@ package foo;
 import factory.MockPersistenceHandler;
 import org.junit.Test;
 
+import java.util.List;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
+import static org.springframework.util.Assert.isInstanceOf;
 
 public class FactorySetupProcessorTest {
 
@@ -33,5 +36,16 @@ public class FactorySetupProcessorTest {
     public void shouldCallPersistenceCallbackAfterBuild() {
         factory.Factory.newFoo().create();
         assertTrue(MockPersistenceHandler.assertCallbackCalledWith("mydb"));
+    }
+
+    @Test
+    public void shouldPersistEachDependency() {
+        factory.Factory.newDriver().create();
+        List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
+        isInstanceOf(Tag.class, logs.get(0).object);
+        isInstanceOf(License.class, logs.get(1).object);
+        isInstanceOf(Tag.class, logs.get(2).object);
+        isInstanceOf(License.class, logs.get(3).object);
+        isInstanceOf(Driver.class, logs.get(4).object);
     }
 }
