@@ -39,13 +39,28 @@ public class FactorySetupProcessorTest {
     }
 
     @Test
-    public void shouldPersistEachDependency() {
+    public void shouldNotPersistComposite() {
+        factory.Factory.newInstructor().create();
+        List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
+        assertEquals(1, logs.size());
+        isInstanceOf(Instructor.class, logs.get(0).object);
+    }
+
+    @Test
+    public void shouldPersistEachAssociation() {
         factory.Factory.newDriver().create();
         List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
+        assertEquals(3, logs.size());
         isInstanceOf(Tag.class, logs.get(0).object);
         isInstanceOf(License.class, logs.get(1).object);
-        isInstanceOf(Tag.class, logs.get(2).object);
-        isInstanceOf(License.class, logs.get(3).object);
-        isInstanceOf(Driver.class, logs.get(4).object);
+        isInstanceOf(Driver.class, logs.get(2).object);
+    }
+
+    @Test
+    public void shouldNotAssociationIfOverriddenInSetterChain() {
+        factory.Factory.newDriver().licenseId("456").create();
+        List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
+        assertEquals(1, logs.size());
+        isInstanceOf(Driver.class, logs.get(0).object);
     }
 }

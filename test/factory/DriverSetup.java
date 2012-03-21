@@ -1,6 +1,7 @@
 package factory;
 
 import foo.Driver;
+import foo.Instructor;
 import foo.License;
 import foo.Tag;
 
@@ -11,6 +12,10 @@ class DriverSetup {
     public String name() {
         return "foo";
     }
+
+    public String licenseId(License license) {
+        return license.getId();
+    }
 }
 
 @Setup(License.class)
@@ -20,6 +25,10 @@ class LicenseSetup {
     public String id() {
         return "123";
     }
+
+    public String tagType(Tag tag) {
+        return tag.getType();
+    }
 }
 
 @Setup(Tag.class)
@@ -28,6 +37,15 @@ class TagSetup {
 
     public String type() {
         return "e";
+    }
+}
+
+@Setup(Instructor.class)
+@Persistent(databaseName = "mydb")
+class InstructorSetup {
+
+    String name() {
+        return "fuu";
     }
 }
 

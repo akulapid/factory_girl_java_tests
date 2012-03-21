@@ -3,8 +3,7 @@ package foo;
 public class Driver {
 
     String name;
-    License license1;
-    License license2;
+    String licenseId;
 
     public String getName() {
         return name;
@@ -14,19 +13,11 @@ public class Driver {
         this.name = name;
     }
 
-    public License getLicense1() {
-        return license1;
+    public String getLicenseId() {
+        return licenseId;
     }
 
-    public void setLicense1(License license1) {
-        this.license1 = license1;
-    }
-
-    public License getLicense2() {
-        return license2;
-    }
-
-    public void setLicense2(License license2) {
-        this.license2 = license2;
+    public void setLicenseId(String licenseId) {
+        this.licenseId = licenseId;
     }
 }

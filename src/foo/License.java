@@ -3,7 +3,7 @@ package foo;
 public class License {
 
     String id;
-    Tag tag;
+    String tagType;
 
     public String getId() {
         return id;
@@ -13,11 +13,11 @@ public class License {
         this.id = id;
     }
 
-    public Tag getTag() {
-        return tag;
+    public String getTagType() {
+        return tagType;
     }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    public void setTagType(String tagType) {
+        this.tagType = tagType;
     }
 }
