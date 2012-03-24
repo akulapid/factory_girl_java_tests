@@ -20,7 +20,7 @@ public class FactorySetupProcessorTest {
 
     @Test
     public void shouldInstantiateOverrideSetup() {
-        Foo foo = factory.Factory.newFoo().bar("ef").fu(3).build();
+        Foo foo = factory.Factory.newFoo().setBar("ef").setFu(3).build();
         assertEquals(3, foo.fu);
         assertEquals("ef", foo.bar);
     }
@@ -58,7 +58,7 @@ public class FactorySetupProcessorTest {
 
     @Test
     public void shouldNotAssociationIfOverriddenInSetterChain() {
-        factory.Factory.newDriver().licenseId("456").create();
+        factory.Factory.newDriver().setLicenseId("456").create();
         List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
         assertEquals(1, logs.size());
         isInstanceOf(Driver.class, logs.get(0).object);
