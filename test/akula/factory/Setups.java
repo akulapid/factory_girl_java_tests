@@ -1,9 +1,8 @@
-package factory;
+package akula.factory;
 
 import foo.Foo;
-import org.hamcrest.Factory;
 
-@Setup(Foo.class)
+@Factory(Foo.class)
 @Persistent(databaseName = "mydb")
 class FooSetup {
 
@@ -16,7 +15,7 @@ class FooSetup {
     }
 }
 
-@Setup(value = Foo.class, name = "Fu")
+@Factory(value = Foo.class, name = "Fu")
 class FuSetup {
 
     public int fu() {

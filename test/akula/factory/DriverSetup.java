@@ -1,11 +1,11 @@
-package factory;
+package akula.factory;
 
 import foo.Driver;
 import foo.Instructor;
 import foo.License;
 import foo.Tag;
 
-@Setup(Driver.class)
+@Factory(Driver.class)
 @Persistent(databaseName = "mydb")
 class DriverSetup {
 
@@ -18,7 +18,7 @@ class DriverSetup {
     }
 }
 
-@Setup(License.class)
+@Factory(License.class)
 @Persistent(databaseName = "mydb")
 class LicenseSetup {
 
@@ -31,7 +31,7 @@ class LicenseSetup {
     }
 }
 
-@Setup(Tag.class)
+@Factory(Tag.class)
 @Persistent(databaseName = "mydb")
 class TagSetup {
 
@@ -40,7 +40,7 @@ class TagSetup {
     }
 }
 
-@Setup(Instructor.class)
+@Factory(Instructor.class)
 @Persistent(databaseName = "mydb")
 class InstructorSetup {
 
