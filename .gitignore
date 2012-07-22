@@ -1,6 +1,5 @@
 *.iml
-out/
-gen/
+target/
 .idea/
 .DS_Store
 .project

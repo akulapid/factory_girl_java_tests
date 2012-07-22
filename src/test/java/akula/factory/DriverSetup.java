@@ -10,7 +10,7 @@ import foo.Tag;
 class DriverSetup {
 
     public String name() {
-        return "foo";
+        return "test/java/foo";
     }
 
     public String licenseId(License license) {
