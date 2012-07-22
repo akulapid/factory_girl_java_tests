@@ -8,7 +8,6 @@ import java.util.List;
 import static akula.factory.Factories.*;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
-import static org.springframework.util.Assert.isInstanceOf;
 
 public class FactorySetupProcessorTest {
 
@@ -44,7 +43,7 @@ public class FactorySetupProcessorTest {
         newInstructor().create();
         List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
         assertEquals(1, logs.size());
-        isInstanceOf(Instructor.class, logs.get(0).object);
+        assertTrue(logs.get(0).object instanceof Instructor);
     }
 
     @Test
@@ -52,9 +51,9 @@ public class FactorySetupProcessorTest {
         newDriver().create();
         List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
         assertEquals(3, logs.size());
-        isInstanceOf(Tag.class, logs.get(0).object);
-        isInstanceOf(License.class, logs.get(1).object);
-        isInstanceOf(Driver.class, logs.get(2).object);
+        assertTrue(logs.get(0).object instanceof Tag);
+        assertTrue(logs.get(1).object instanceof License);
+        assertTrue(logs.get(2).object instanceof Driver);
     }
 
     @Test
@@ -62,6 +61,6 @@ public class FactorySetupProcessorTest {
         newDriver().setLicenseId("456").create();
         List<MockPersistenceHandler.Log> logs = MockPersistenceHandler.logs();
         assertEquals(1, logs.size());
-        isInstanceOf(Driver.class, logs.get(0).object);
+        assertTrue(logs.get(0).object instanceof Driver);
     }
 }
