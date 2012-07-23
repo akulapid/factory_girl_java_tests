@@ -5,11 +5,21 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static akula.factory.Factories.*;
+import static akula.factory.DriverFactory.*;
+import static akula.factory.FuFactory.*;
+import static akula.factory.InstructorFactory.*;
+import static akula.factory.PatientFactory.*;
+import static akula.factory.FooFactory.*;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 public class FactorySetupProcessorTest {
+
+    @Test
+    public void shouldInstantiateAndSetupLombokClass() {
+        Patient patient = newPatient().build();
+        assertEquals("foobar", patient.getName());
+    }
 
     @Test
     public void shouldInstantiateAndSetup() {

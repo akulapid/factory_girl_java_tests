@@ -28,6 +28,12 @@
             <version>3.2.1</version>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>0.11.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>akula.factory</groupId>
             <artifactId>factory_girl</artifactId>
             <version>0.1</version>
@@ -36,6 +42,27 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12</version>
+                <configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+<!--
             <plugin>
                 <groupId>org.bsc.maven</groupId>
                 <artifactId>maven-processor-plugin</artifactId>
@@ -49,29 +76,39 @@
                         <configuration>
                             <outputDirectory>target/generated-test-sources/test-annotations</outputDirectory>
                             <processors>
+                                <processor>lombok.core.AnnotationProcessor</processor>
                                 <processor>akula.factory.processor.FactoryProcessor</processor>
                             </processors>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+        </configuration>
+        <executions>
+            <execution>
+                <id>default-compile</id>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
                     <proc>none</proc>
+                    <includes>
+                        <include>akula/factory/**</include>
+                    </includes>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
-                <configuration>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
+            </execution>
+            <execution>
+                <id>compile-everything-else</id>
+                <phase>compile</phase>
+                <goals>
+                    <goal>compile</goal>
+                </goals>
+            </execution>
+        </executions>
+        </plugin>
+-->
